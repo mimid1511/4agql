@@ -1,0 +1,270 @@
+{
+	"info": {
+		"_postman_id": "a10ede46-ba1b-431d-92dd-156896ddd6ed",
+		"name": "4AGQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34091062"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createUser(createUserInput: { \r\n    email: \"test33@example.com\", \r\n    pseudo: \"testUser\", \r\n    password: \"test2Password\", \r\n    role: \"prof\" }) \r\n    {\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  users {\r\n    _id\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  user(_id: \"662172452e89b14ffbb41033\") {\r\n    _id\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  updateUser(\r\n     updateUserInput: {\r\n    _id: \"662172452e89b14ffbb41033\",\r\n    pseudo: \"updatedPseudo\"\r\n    \r\n  }) {\r\n    _id\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    removeUser(_id: \"662172452e89b14ffbb41033\"){\r\n        _id\r\n        email\r\n        pseudo\r\n        password\r\n        role\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Grades",
+			"item": [
+				{
+					"name": "create grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5ba\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bb\", \r\n    subject: \"maths\", \r\n    value: 15 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get grades",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  grades {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  grade(_id: \"662172452e89b14ffbb41033\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  updateGrade(\r\n     updateGradeInput: {\r\n    _id: \"6621aa44ab382e908bb2e295\",\r\n    value: 17\r\n    \r\n  }) {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete grade",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    removeGrade(_id: \"6621aa33ab382e908bb2e293\"){\r\n        _id\r\n        studentId\r\n        teacherId\r\n        subject\r\n        value\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
