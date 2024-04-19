@@ -25,6 +25,8 @@ export class Grade {
   @Field()
   @Prop() 
   value: number;
+
+  //coefficient: number;
 }
 
 export const GradeSchema = SchemaFactory.createForClass(Grade);

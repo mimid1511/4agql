@@ -6,6 +6,7 @@ import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/ap
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { ConfigModule } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 
 
 @Module({
@@ -21,6 +22,10 @@ import { ConfigModule } from '@nestjs/config';
       autoSchemaFile: {
         federation: 2,
       }
+    }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '6h' },
     }),
   ],
   providers: [UsersResolver, UsersService],

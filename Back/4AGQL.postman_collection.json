@@ -17,7 +17,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createUser(createUserInput: { \r\n    email: \"test33@example.com\", \r\n    pseudo: \"testUser\", \r\n    password: \"test2Password\", \r\n    role: \"prof\" }) \r\n    {\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"query": "mutation {\r\n  createUser(createUserInput: { \r\n    email: \"teacher@example.com\", \r\n    pseudo: \"teacher\", \r\n    password: \"test2Password\", \r\n    role: \"teacher\" }) \r\n    {\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -37,6 +37,16 @@
 				{
 					"name": "get users",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIxYTUwNmM1NjQzMGJkMmU4ZWY1YmEiLCJlbWFpbCI6InN0dWRlbnRAZXhhbXBsZS5jb20iLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcxMzUxMzU5OSwiZXhwIjoxNzEzNTM1MTk5fQ.r7kVT56D91Ke27G9KDL4aks6gOpDjN7mmbDq8cxA1RM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -117,7 +127,32 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n    removeUser(_id: \"662172452e89b14ffbb41033\"){\r\n        _id\r\n        email\r\n        pseudo\r\n        password\r\n        role\r\n    }\r\n}",
+								"query": "mutation {\r\n    removeUser(_id: \"662190d6df4ba3fea4ff378f\"){\r\n        _id\r\n        email\r\n        pseudo\r\n        password\r\n        role\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4001/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4001",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n  login(email: \"student@example.com\", password: \"test2Password\") \r\n}",
 								"variables": ""
 							}
 						},
@@ -147,7 +182,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5ba\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bb\", \r\n    subject: \"maths\", \r\n    value: 15 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5bc\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bd\", \r\n    subject: \"maths\", \r\n    value: 15 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -197,7 +232,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  grade(_id: \"662172452e89b14ffbb41033\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "query {\r\n  grade(_id: \"6621aa44ab382e908bb2e295\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
