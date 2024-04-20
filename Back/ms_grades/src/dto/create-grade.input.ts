@@ -18,4 +18,8 @@ export class CreateGradeInput {
   @Field()
   @Prop()
   value: number;
+
+  @Field()
+  @Prop()
+  coefficient: number;
 }

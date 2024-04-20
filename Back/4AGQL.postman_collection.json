@@ -182,7 +182,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5bc\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bd\", \r\n    subject: \"maths\", \r\n    value: 15 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5bc\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bd\", \r\n    subject: \"maths\", \r\n    value: 16,\r\n    coefficient: 2 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -207,7 +207,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  grades {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "query {\r\n  grades {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -232,7 +232,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  grade(_id: \"6621aa44ab382e908bb2e295\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "query {\r\n  grade(_id: \"6623bbe0aee3e6955c00e218\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -257,7 +257,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  updateGrade(\r\n     updateGradeInput: {\r\n    _id: \"6621aa44ab382e908bb2e295\",\r\n    value: 17\r\n    \r\n  }) {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n  }\r\n}",
+								"query": "mutation {\r\n  updateGrade(\r\n     updateGradeInput: {\r\n    _id: \"6623bbe0aee3e6955c00e218\",\r\n    value: 17\r\n    \r\n  }) {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -282,7 +282,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n    removeGrade(_id: \"6621aa33ab382e908bb2e293\"){\r\n        _id\r\n        studentId\r\n        teacherId\r\n        subject\r\n        value\r\n    }\r\n}",
+								"query": "mutation {\r\n    removeGrade(_id: \"6623bbe0aee3e6955c00e218\"){\r\n        _id\r\n        studentId\r\n        teacherId\r\n        subject\r\n        value\r\n        coefficient\r\n    }\r\n}",
 								"variables": ""
 							}
 						},
@@ -292,6 +292,136 @@
 								"localhost"
 							],
 							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "create class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    createClass(createClassInput: {\r\n        name: \"6°3\",\r\n        professorId: \"zfoizzdfz\",\r\n        studentIds: [\r\n            \"idfzd1\",\r\n            \"fdod2\"\r\n        ]\r\n    }){\r\n        name\r\n        professorId\r\n        studentIds\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4003/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get classes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n    classes {\r\n        _id\r\n        name\r\n        professorId\r\n        studentIds\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4003/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  class(_id: \"6623b29be5c24b5c9694ac05\") {\r\n        _id\r\n        name\r\n        professorId\r\n        studentIds\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4003/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    updateClass(updateClassInput: {\r\n        _id: \"6623b29be5c24b5c9694ac05\",\r\n        name: \"6°3\"\r\n    }){\r\n        _id\r\n        name\r\n        professorId\r\n        studentIds\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4003/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation {\r\n    removeClass(_id: \"6623b29be5c24b5c9694ac05\"){\r\n        _id\r\n        name\r\n        professorId\r\n        studentIds\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4003/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4003",
 							"path": [
 								"graphql"
 							]

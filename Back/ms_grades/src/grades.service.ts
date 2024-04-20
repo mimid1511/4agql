@@ -25,11 +25,11 @@ export class GradesService {
   }
 
   async findOneById(id: string) {
-    const user = await this.gradeModel.findById(id).exec();
-    if (!user) {
+    const grade = await this.gradeModel.findById(id).exec();
+    if (!grade) {
       throw new NotFoundException(`Grade #${id} not found`);
     }
-    return user;
+    return grade;
   }
 
   async update(id: string, updateGradeInput: UpdateGradeInput) {

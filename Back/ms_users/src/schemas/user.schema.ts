@@ -1,4 +1,4 @@
-import { ObjectType, Field, ID, Directive } from '@nestjs/graphql'; 
+import { ObjectType, Field } from '@nestjs/graphql'; 
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose'; 
 import { Document } from 'mongoose';
 
@@ -25,8 +25,6 @@ export class User {
   @Field()
   @Prop()
   role: string; 
-
-  
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
