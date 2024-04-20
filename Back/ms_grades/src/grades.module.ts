@@ -6,6 +6,7 @@ import { ApolloFederationDriver, ApolloFederationDriverConfig } from '@nestjs/ap
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Grade, GradeSchema } from './schemas/grade.schema';
+import { HttpModule } from '@nestjs/axios';
 
 
 @Module({
@@ -22,6 +23,7 @@ import { Grade, GradeSchema } from './schemas/grade.schema';
         federation: 2,
       }
     }),
+    HttpModule,
   ],
   providers: [GradesResolver, GradesService],
 })

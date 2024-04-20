@@ -17,7 +17,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createUser(createUserInput: { \r\n    email: \"teacher@example.com\", \r\n    pseudo: \"teacher\", \r\n    password: \"test2Password\", \r\n    role: \"teacher\" }) \r\n    {\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
+								"query": "mutation {\r\n  createUser(createUserInput: { \r\n    email: \"student2@example.com\", \r\n    pseudo: \"student2\", \r\n    password: \"test2Password\", \r\n    role: \"student\" }) \r\n    {\r\n    email\r\n    pseudo\r\n    password\r\n    role\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -42,7 +42,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIxYTUwNmM1NjQzMGJkMmU4ZWY1YmEiLCJlbWFpbCI6InN0dWRlbnRAZXhhbXBsZS5jb20iLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTcxMzUxMzU5OSwiZXhwIjoxNzEzNTM1MTk5fQ.r7kVT56D91Ke27G9KDL4aks6gOpDjN7mmbDq8cxA1RM",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjIxYTUxMGM1NjQzMGJkMmU4ZWY1YmMiLCJlbWFpbCI6InRlYWNoZXJAZXhhbXBsZS5jb20iLCJyb2xlIjoidGVhY2hlciIsImlhdCI6MTcxMzYyODAzMiwiZXhwIjoxNzEzNjQ5NjMyfQ.uDeanyiOCOS-mRx-reYCq4TLkHw_IDJg4Mb3oEdWWns",
 									"type": "string"
 								}
 							]
@@ -152,7 +152,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  login(email: \"student@example.com\", password: \"test2Password\") \r\n}",
+								"query": "mutation {\r\n  login(email: \"teacher@example.com\", password: \"test2Password\") \r\n}",
 								"variables": ""
 							}
 						},
@@ -182,7 +182,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6621a506c56430bd2e8ef5bc\", \r\n    teacherId: \"6621a506c56430bd2e8ef5bd\", \r\n    subject: \"maths\", \r\n    value: 16,\r\n    coefficient: 2 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
+								"query": "mutation {\r\n  createGrade(createGradeInput: { \r\n    studentId: \"6623edc752e5fa825138ffdf\", \r\n    teacherId: \"6621a510c56430bd2e8ef5bc\", \r\n    subject: \"maths\", \r\n    value: 77,\r\n    coefficient: 2 }) \r\n    {\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -283,6 +283,31 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "mutation {\r\n    removeGrade(_id: \"6623bbe0aee3e6955c00e218\"){\r\n        _id\r\n        studentId\r\n        teacherId\r\n        subject\r\n        value\r\n        coefficient\r\n    }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "localhost:4002/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "4002",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all grades of user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  getGradesOfUser(_id: \"6621a506c56430bd2e8ef5ba\") {\r\n    _id\r\n    studentId\r\n    teacherId\r\n    subject\r\n    value\r\n    coefficient\r\n  }\r\n}",
 								"variables": ""
 							}
 						},

@@ -6,7 +6,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { UnauthorizedException, UseGuards } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '@nestjs/passport';
+import { TeacherGuard } from './guards/teacher.guard';
 
 @Resolver(() => User)
 export class UsersResolver {
@@ -20,6 +20,7 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
+  @UseGuards(TeacherGuard)
   @Query(() => [User], { name: 'users' })
   findAll() {
     return this.usersService.findAll();
@@ -54,10 +55,5 @@ export class UsersResolver {
     const token = this.jwtService.sign(payload);
     return token;
   }
-
-  // @ResolveReference()
-  // resolveReference(reference: { __typename: string, id: string }) {
-  //  return this.usersService.findOne(reference.id);
-  // }
 
 }

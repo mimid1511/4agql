@@ -33,4 +33,9 @@ export class GradesResolver {
   removeGrade(@Args('_id') id: string) {
     return this.gradesService.remove(id);
   }
+
+  @Query(() => [Grade])
+  getGradesOfUser(@Args('_id') id: string) {
+    return this.gradesService.getGradesOfUser(id);
+  }
 }

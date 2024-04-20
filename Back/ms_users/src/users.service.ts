@@ -5,20 +5,23 @@ import { User, UserSchema } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import * as bcrypt from 'bcryptjs';
+import { HttpService } from '@nestjs/axios';
+
 
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectModel(User.name) 
-    private userModel: Model<User>
+    private userModel: Model<User>,
+    private readonly httpService: HttpService
   ) {}
 
 
   async create(createUserInput: CreateUserInput): Promise<User> {
     // check role
     if (createUserInput.role !== 'admin' && createUserInput.role !== 'student' && createUserInput.role !== 'teacher') {
-      throw new Error('Le rôle doit être admin, student ou teacher, rôle actuel : ' + createUserInput.role);
+      throw new Error(`Le rôle doit être admin, student ou teacher (actuellement : ${createUserInput.role})`);
     }
     // hash the password
     const hashedPassword = await bcrypt.hash(createUserInput.password, 10);
@@ -63,4 +66,6 @@ export class UsersService {
   async findOneByEmail(email: string): Promise<User> {
     return await this.userModel.findOne({ email }).exec();
   }
+
+  
 }
