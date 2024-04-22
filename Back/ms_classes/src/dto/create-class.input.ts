@@ -7,7 +7,7 @@ export class CreateClassInput {
   @Field()
   @Prop()
   name: string;
-  
+
   @Field()
   @Prop()
   professorId: string;
@@ -15,4 +15,8 @@ export class CreateClassInput {
   @Field(type => [String])
   @Prop()
   studentIds: string[];
+
+  @Field()
+  @Prop()
+  school: string;
 }

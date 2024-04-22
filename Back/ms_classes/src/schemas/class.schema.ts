@@ -21,6 +21,10 @@ export class Class {
   @Field(type => [String])
   @Prop() 
   studentIds: string[];
+
+  @Field()
+  @Prop() 
+  school: string;
 }
 
 export const ClassSchema = SchemaFactory.createForClass(Class);
