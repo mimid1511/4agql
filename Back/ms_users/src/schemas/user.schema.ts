@@ -25,6 +25,14 @@ export class User {
   @Field()
   @Prop()
   role: string;
+
+  @Field({ nullable: true }) // GraphQL Field is nullable
+  @Prop({
+    required: function() { // Mongoose Prop is conditionally required
+      return this.role === 'teacher';
+    }
+  })
+  teachingSubjectId: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

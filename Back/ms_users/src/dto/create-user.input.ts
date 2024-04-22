@@ -17,5 +17,9 @@ export class CreateUserInput {
 
   @Field()
   @Prop()
-  role: string; 
+  role: string;
+
+  @Field({ nullable: true })
+  @Prop()
+  teachingSubjectId?: string; 
 }
