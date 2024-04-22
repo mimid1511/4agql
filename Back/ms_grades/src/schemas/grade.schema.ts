@@ -20,7 +20,7 @@ export class Grade {
 
   @Field()
   @Prop() 
-  subject: string;
+  subjectId: string;
 
   @Field()
   @Prop() 

@@ -13,7 +13,7 @@ export class CreateGradeInput {
 
   @Field()
   @Prop()
-  subject: string;
+  subjectId: string;
 
   @Field()
   @Prop()

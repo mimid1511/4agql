@@ -24,7 +24,7 @@ export class User {
 
   @Field()
   @Prop()
-  role: string; 
+  role: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

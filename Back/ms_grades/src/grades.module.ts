@@ -7,6 +7,9 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Grade, GradeSchema } from './schemas/grade.schema';
 import { HttpModule } from '@nestjs/axios';
+import { SubjectsResolver } from './subjects.resolver';
+import { SubjectsService } from './subjects.service';
+import { Subject, SubjectSchema } from './schemas/subject.schema';
 
 
 @Module({
@@ -16,7 +19,10 @@ import { HttpModule } from '@nestjs/axios';
       isGlobal: true,
     }),
     MongooseModule.forRoot(process.env.DB_URI),
-    MongooseModule.forFeature([{ name: Grade.name, schema: GradeSchema }]),
+    MongooseModule.forFeature([
+      { name: Grade.name, schema: GradeSchema },
+      { name: Subject.name, schema: SubjectSchema }
+    ]),
     GraphQLModule.forRoot<ApolloFederationDriverConfig>({
       driver: ApolloFederationDriver,
       autoSchemaFile: {
@@ -25,6 +31,6 @@ import { HttpModule } from '@nestjs/axios';
     }),
     HttpModule,
   ],
-  providers: [GradesResolver, GradesService],
+  providers: [GradesResolver, GradesService, SubjectsResolver, SubjectsService],
 })
 export class GradesModule {}

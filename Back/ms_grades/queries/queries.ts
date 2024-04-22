@@ -19,7 +19,7 @@ export function getAllGradesQuery() {
         _id
         studentId
         teacherId
-        subject
+        subjectId
         value
         coefficient
       }
