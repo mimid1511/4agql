@@ -23,7 +23,7 @@ export function TableBulletin() {
         </div>);
 }
 
-export function TableNotes() {
+export function TableNotes({ data }) {
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra">
@@ -37,6 +37,17 @@ export function TableNotes() {
                     </tr>
                 </thead>
                 <tbody>
+
+                    {data.grades.map((grade) => (
+                        <tr key={grade._id}>
+                            <td>{grade.subjectId}</td>
+                            <td>{grade.teacherId}</td>
+                            <td>
+                                <span class="badge badge-neutral">{grade.value}%<sup>({grade.coefficient})</sup></span>
+                            </td>                        
+                        </tr>
+                    ))}
+
                     <tr>
                         <td>Cy Ganderton</td>
                         <td>Quality Control Specialist</td>
