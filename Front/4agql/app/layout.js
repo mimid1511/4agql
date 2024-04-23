@@ -4,7 +4,7 @@ import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
-import { AuthProvider } from "@/Components/Provider";
+import SessionWrapper from "@/Components/Provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -16,13 +16,13 @@ export default function RootLayout({ children }) {
   return (
     <html data-theme="dark">
       <body className={inter.className}>
-        <AuthProvider>
+        <SessionWrapper>
 
           <Navbar />
           {children}
           <Footer />
 
-        </AuthProvider>
+        </SessionWrapper>
 
       </body>
     </html>
