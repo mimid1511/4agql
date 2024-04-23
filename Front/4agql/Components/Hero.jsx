@@ -2,8 +2,46 @@
 
 import ModalLogin from "./ModalLogin";
 import { redirect } from 'next/navigation'
+import { useState } from "react";
+import { gql, useMutation } from "@apollo/client";
+import { loginClient } from "@/lib/apolloClient";
 
-export default function Hero() {
+
+const query = gql`
+    mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+        token
+    }
+}
+`;
+
+const Hero = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            // const { data } = await login({
+            //   variables: { email, password }
+            // });
+
+            const { data } = await loginClient().mutate({ mutation: query, variables: { email, password } });
+
+            const token = data.login;
+            localStorage.setItem('token', token);
+
+
+
+            // Redirigez l'utilisateur vers une page protégée ou l'accueil
+            // router.push('/dashboard');
+        } catch (error) {
+            setError(error.message);
+            console.log(error)
+        }
+    };
 
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://www.collinsdictionary.com/images/full/school_309241295.jpg)' }}>
@@ -12,9 +50,12 @@ export default function Hero() {
                 <div className="max-w-md">
                     <h1 className="mb-5 text-5xl font-bold">Bienvenue</h1>
                     <p className="mb-5">Espace famille, élève, personnel, enseignant...</p>
-                    <ModalLogin />
+                    <ModalLogin handleSubmit={handleSubmit} email={email} setEmail={setEmail} password={password} setPassword={setPassword} error={error} />
                 </div>
             </div>
         </div>
     );
+
 }
+
+export default Hero;
