@@ -7,13 +7,6 @@ import { gql, useMutation } from "@apollo/client";
 import { loginClient } from "@/lib/apolloClient";
 
 
-const query = gql`
-    mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-        token
-    }
-}
-`;
 
 const Hero = () => {
 
@@ -28,12 +21,15 @@ const Hero = () => {
             //   variables: { email, password }
             // });
 
-            const { data } = await loginClient().mutate({ mutation: query, variables: { email, password } });
+            const { data } = await loginClient().mutate({ mutation: gql`
+            mutation {
+                login(email: "${email}", password: "${password}") 
+            }` });
 
             const token = data.login;
-            localStorage.setItem('token', token);
+            // localStorage.setItem('token', token);
 
-
+            console.log(data.login);
 
             // Redirigez l'utilisateur vers une page protégée ou l'accueil
             // router.push('/dashboard');
