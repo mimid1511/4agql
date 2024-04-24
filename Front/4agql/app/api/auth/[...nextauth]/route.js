@@ -3,6 +3,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 import { gql } from "@apollo/client";
 import { loginClient } from "@/lib/apolloClient";
+import { jwtDecode } from "jwt-decode";
 
 const handler = NextAuth({
   providers: [
@@ -29,7 +30,9 @@ const handler = NextAuth({
         }` });
 
         if (data) {
-          const user = { id: "1", email: email, password: password }
+          const token = jwtDecode(data.login);
+          console.log(token);
+          const user = { id: token, dert : "data", email: email, password: password }
           return user
         } else {
           return null
