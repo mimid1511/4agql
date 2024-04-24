@@ -17,13 +17,10 @@ export default function RootLayout({ children }) {
     <html data-theme="dark">
       <body className={inter.className}>
         <SessionWrapper>
-
           <Navbar />
           {children}
           <Footer />
-
         </SessionWrapper>
-
       </body>
     </html>
   );

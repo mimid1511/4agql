@@ -34,7 +34,7 @@ export default function Navbar() {
             <div className="navbar-center">
                 <Link className="btn btn-primary text-xl" href="/">SchooInc ltd</Link>
             </div>
-            {status === "unauthenticated" && (
+            {status === "authenticated" && (
                 <div className="navbar-end">
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-neutral btn-circle avatar">
@@ -50,8 +50,8 @@ export default function Navbar() {
                                 </a>
                             </li>
                             <li><a >Parametres</a></li>
-                            <li><a>Se déconnecter</a></li>
-                            <button onClick={() => signIn('credentials')}>Sign in</button>
+                            <li onClick={() => signOut()}><a>Se déconnecter</a></li>
+                            {/* <button onClick={() => signIn('credentials')}>Sign in</button> */}
                         </ul>
                     </div>
                 </div>

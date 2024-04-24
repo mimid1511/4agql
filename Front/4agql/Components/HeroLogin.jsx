@@ -5,10 +5,11 @@ import { redirect } from 'next/navigation'
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { loginClient } from "@/lib/apolloClient";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 
 
-const Hero = () => {
+const HeroLogin = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,19 +18,20 @@ const Hero = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // const { data } = await login({
-            //   variables: { email, password }
-            // });
 
-            const { data } = await loginClient().mutate({ mutation: gql`
-            mutation {
-                login(email: "${email}", password: "${password}") 
-            }` });
+            // const { data } = await loginClient().mutate({ mutation: gql`
+            // mutation {
+            //     login(email: "${email}", password: "${password}") 
+            // }` });
+            // console.log(data.login);
 
-            const token = data.login;
-            // localStorage.setItem('token', token);
 
-            console.log(data.login);
+            signIn("credentials", {
+                email,
+                password,
+                redirect: false, // Redirection personnalisée après la connexion réussie
+            });
+        
 
             // Redirigez l'utilisateur vers une page protégée ou l'accueil
             // router.push('/dashboard');
@@ -54,4 +56,4 @@ const Hero = () => {
 
 }
 
-export default Hero;
+export default HeroLogin;
