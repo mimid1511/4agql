@@ -23,7 +23,15 @@ export function TableBulletin() {
         </div>);
 }
 
+import { groupBy } from 'lodash';
+
 export function TableNotes({ data }) {
+    console.log("=========== DATA ==============");
+    console.log(data);
+    console.log("==============================");
+
+    const groupedData = groupBy(data, 'subjectName');
+
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra">
@@ -37,28 +45,22 @@ export function TableNotes({ data }) {
                     </tr>
                 </thead>
                 <tbody>
-
-                    {data.grades.map((grade) => (
-                        <tr key={grade._id}>
-                            <td>{grade.subjectId}</td>
-                            <td>{grade.teacherId}</td>
+                    {Object.entries(groupedData).map(([subjectName, grades]) => (
+                        <tr key={subjectName}>
+                            <td className="text-gray-400">{subjectName}</td>
+                            <td className="text-gray-400">{grades[0].teacherName}</td>
                             <td>
-                                <span className="badge badge-neutral">{grade.value}%<sup>({grade.coefficient})</sup></span>
-                            </td>                        
+                                {grades.map((grade) => (
+                                    <span key={grade._id} className="badge badge-neutral">{grade.value}%<sup>({grade.coefficient})</sup></span>
+                                ))}
+                            </td>
+                            <td>
+                                <span className="badge badge-success">{(grades.reduce((acc, grade) => acc + grade.value * grade.coefficient, 0) / grades.reduce((acc, grade) => acc + grade.coefficient, 0)).toFixed(2)}%</span>
+                            </td>         
                         </tr>
                     ))}
-
-                    <tr>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>
-                            <span class="badge badge-neutral"><sup>12</sup>/<sub>20</sub></span>
-                        </td>
-                        <td>
-                            <span class="badge badge-success">12</span>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
-        </div>);
+        </div>
+    );
 }
