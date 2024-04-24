@@ -4,13 +4,17 @@ import { UpdateClassInput } from './dto/update-class.input';
 import { Class } from './schemas/class.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { firstValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
+import { getUserByEmailQuery } from 'queries/queries';
 
 
 @Injectable()
 export class ClassesService {
   constructor(
     @InjectModel(Class.name) 
-    private classModel: Model<Class>
+    private classModel: Model<Class>,
+    private readonly httpService: HttpService
   ) {}
 
 
@@ -30,6 +34,24 @@ export class ClassesService {
     if (!classe) {
       throw new NotFoundException(`Class #${id} not found`);
     }
+    return classe;
+  }
+
+  async findOneByUserEmail(email: string) {
+    const response = await firstValueFrom(
+      this.httpService.post(process.env.MS_USERS, {
+        query: getUserByEmailQuery(email)
+      })
+    );
+    if (!response || !response.data || !response.data.data || !response.data.data.userByEmail) {
+      throw new Error(`User with email ${email} not found`);
+    }
+    const user = response.data.data.userByEmail;
+    const userId = user._id;
+    const classe = await this.classModel.findOne({ studentIds: { $in: [userId] } }).exec();
+    if (!classe) {
+      throw new Error(`User with email ${email} has no class.`);
+  }
     return classe;
   }
 

@@ -23,6 +23,12 @@ export class ClassesResolver {
     return this.classesService.findOneById(id);
   }
 
+  @Query(() => Class, { name: 'classByUserEmail' })
+  findOneByUserEmail(@Args('email') email: string) {
+    console.log("========= EMAIL =========");
+    return this.classesService.findOneByUserEmail(email);
+  }
+
   @Mutation(() => Class)
   updateClass(@Args('updateClassInput') updateClassInput: UpdateClassInput) {
     return this.classesService.update(updateClassInput._id, updateClassInput);
