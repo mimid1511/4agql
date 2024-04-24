@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
-import { getAllGradesQuery, getUserQuery } from 'queries/queries';
+import { getAllGradesQuery, getUserByEmailQuery, getUserQuery } from 'queries/queries';
 import { filter } from 'rxjs/operators';
 import { groupBy, map } from 'lodash';
 
@@ -103,13 +103,22 @@ export class GradesService {
         query: getAllGradesQuery()
       })
     );
-    console.log("========= DATA ==========");
-    console.log(response.data.data.grades);
-    console.log("===================");
     const grades = response.data.data.grades.filter(grade => grade.studentId === id);
-    console.log("========= DATA FILTER ==========");
-    console.log(grades);
-    console.log("===================");
+    return grades;
+  }
+
+  async getGradesOfUserByEmail(email: string) {
+    const response = await firstValueFrom(
+      this.httpService.post(process.env.MS_USERS, {
+        query: getUserByEmailQuery(email)
+      })
+    );
+    if (!response || !response.data || !response.data.data || !response.data.data.userByEmail) {
+      throw new Error(`User with email ${email} not found`);
+    }
+    const user = response.data.data.userByEmail;
+    const userId = user._id;
+    const grades = await this.gradeModel.find({ studentId: userId }).exec();
     return grades;
   }
 

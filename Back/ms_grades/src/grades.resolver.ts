@@ -38,4 +38,9 @@ export class GradesResolver {
   getGradesOfUser(@Args('_id') id: string) {
     return this.gradesService.getGradesOfUser(id);
   }
+
+  @Query(() => [Grade])
+  getGradesOfUserByEmail(@Args('email') email: string) {
+    return this.gradesService.getGradesOfUserByEmail(email);
+  }
 }
