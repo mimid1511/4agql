@@ -43,7 +43,7 @@ export function TableNotes({ data }) {
                             <td>{grade.subjectId}</td>
                             <td>{grade.teacherId}</td>
                             <td>
-                                <span class="badge badge-neutral">{grade.value}%<sup>({grade.coefficient})</sup></span>
+                                <span className="badge badge-neutral">{grade.value}%<sup>({grade.coefficient})</sup></span>
                             </td>                        
                         </tr>
                     ))}
