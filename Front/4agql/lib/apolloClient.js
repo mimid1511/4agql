@@ -15,3 +15,10 @@ export const loginClient = () => {
     cache: new InMemoryCache(),
   });
 };
+
+export const classeClient = () => {
+  return new ApolloClient({
+    uri: "http://localhost:4003/graphql",
+    cache: new InMemoryCache(),
+  });
+};
