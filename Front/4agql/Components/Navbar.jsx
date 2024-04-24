@@ -9,11 +9,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Navbar() {
 
     const { data: session, status } = useSession();
-    if (status === "authenticated") {
-        console.log(status)
-    } else {
-        console.log(status)
-    }
 
     return (
         <div className="navbar bg-base-100">

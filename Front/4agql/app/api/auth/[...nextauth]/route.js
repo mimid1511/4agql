@@ -1,6 +1,5 @@
-import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import NextAuth, { AuthOptions } from "next-auth";
 import { gql } from "@apollo/client";
 import { loginClient } from "@/lib/apolloClient";
 import { jwtDecode } from "jwt-decode";
