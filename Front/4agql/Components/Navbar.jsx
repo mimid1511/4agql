@@ -20,7 +20,7 @@ export default function Navbar() {
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><Link href="/">Accueil</Link></li>
-                            <li><Link href="/Notes">Notes <span className="badge">4</span></Link></li>
+                            <li><Link href="/Notes">Notes</Link></li>
                             <li><Link href="/Classes">Classes</Link></li>
                         </ul>
                     </div>
@@ -39,10 +39,9 @@ export default function Navbar() {
                         </div>
                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
                             <li>
-                                <a className="justify-between">
+                                <Link href="/ProfilUpdate" className="justify-between">
                                     Profile
-                                    <span className="badge">New</span>
-                                </a>
+                                </Link>
                             </li>
                             <li><a >Parametres</a></li>
                             <li onClick={() => signOut()}><a>Se déconnecter</a></li>
