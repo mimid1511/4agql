@@ -113,7 +113,13 @@ export default function Profil() {
           </label>
         </div>
         <br />
-        <button className="btn" onClick={handleUpdateProfile}>Mettre à jour le profil</button>
+        {userData?.role !== 'student' && (
+          <button className="btn" onClick={handleUpdateProfile}>Mettre à jour le profil</button>
+        )}
+        {userData?.role === 'student' && (
+          <button className="btn" disabled>Mettre à jour le profil</button>
+        )}
+        <br />
         <br />
       </section>
     </main>
