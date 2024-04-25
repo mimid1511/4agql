@@ -7,6 +7,7 @@ import { gql } from "@apollo/client";
 import { useAuth } from "@/Components/Provider";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react"
+import { checkIfConnected } from "../common/checkIfConnected";
 
 
 function queryGrades() {
@@ -41,7 +42,6 @@ function queryCurrentUser(email) {
 
 }
 
-
 function querySubject(subjectId) {
   return gql`query {
     subject(_id: "${subjectId}") {
@@ -52,16 +52,24 @@ function querySubject(subjectId) {
 }
 
 
+
 export default function Home() {
+
+  checkIfConnected();
+  
+  const { data: session, status } = useSession();
+  const [gradesData, setGradesData] = useState(null);
+
+  useEffect(() => {
+    if (status === "authenticated" && session) {
+      // Fetch user data when session is available
+      fetchGrades();
+    }
+  }, [session, status]);
 
 
   const fetchGrades = async () => {
     try {
-
-      console.log("----- USER -----");
-      console.log(session.user.email);
-
-
       const { data } = await noteClient().query({
         query: queryGrades(),
       });
@@ -95,50 +103,7 @@ export default function Home() {
   };
 
 
-  const { data: session, status } = useSession();
-  const [gradesData, setGradesData] = useState(null);
-
-  useEffect(() => {
-    if (status === "authenticated" && session) {
-      // Fetch user data when session is available
-      fetchGrades();
-    }
-  }, [session, status]);
-
-  /*
-  const { data } = await noteClient().query({ query, fetchPolicy: 'network-only' });
-
-  const appendedData = await Promise.all(data.grades.map(async (grade) => {
-    const teacherQuery = queryTeacher(grade.teacherId);
-    const { data: teacherData } = await loginClient().query({ query: teacherQuery, fetchPolicy: 'network-only' });
-    if (!teacherData || !teacherData.user) {
-      console.error(`No data returned for teacher with ID ${grade.teacherId}`);
-      return grade; // return the original grade object if no teacher data is found
-    }
-
-    const subjectQuery = querySubject(grade.subjectId);
-    const { data: subjectData } = await noteClient().query({ query: subjectQuery, fetchPolicy: 'network-only' });
-    if (!subjectData || !subjectData.subject) {
-      console.error(`No data returned for subject with ID ${grade.subjectId}`);
-      return grade; // return the original grade object if no subject data is found
-    }
-
-    return {
-      ...grade,
-      teacherName: teacherData.user.pseudo,
-      subjectName: subjectData.subject.name,
-    };
-  }));
   
-
-  console.log("================ ORIGINAL DATA ====================")
-  console.log({data});
-  console.log("====================================")
-  console.log("================ APPENDED DATA ====================")
-  console.log(appendedData);
-  console.log("====================================")
-
-  */
 
   return (
     <main>

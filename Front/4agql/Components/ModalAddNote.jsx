@@ -1,4 +1,4 @@
-import { noteClient } from "@/lib/apolloClient";
+import { loginClient, noteClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 import { useState, useEffect } from "react";
 
@@ -13,7 +13,7 @@ export default function ModalAddNote({ studentId, studentPseudo, teacherId }) {
 
   const fetchSubjectId = async () => {
     try {
-      const { data } = await noteClient().query({
+      const { data } = await loginClient().query({
         query: gql`
           query {
             user(_id: "${teacherId}") {

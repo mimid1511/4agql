@@ -4,10 +4,11 @@ import Grid from "@/Components/Grid";
 import { classeClient, loginClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react"
-
+import { useSession } from "next-auth/react";
+import { checkIfConnected } from "../common/checkIfConnected";
 
 export default function Classes() {
+  checkIfConnected();
 
   const { data: session, status } = useSession();
   const [classeData, setClasseData] = useState(null);
