@@ -1,8 +1,9 @@
 import { loginClient } from "@/lib/apolloClient";
 import { gql } from "@apollo/client";
 import { useEffect, useState } from "react";
+import ModalAddNote from "./ModalAddNote";
 
-export default function Grid({ data }) {
+export default function Grid({ data, userId, userRole }) {
   const [studentData, setStudentData] = useState([]);
 
   useEffect(() => {
@@ -46,7 +47,9 @@ export default function Grid({ data }) {
                   <h2 className="card-title">{student.pseudo}</h2>
                   {/* <p>If a dog chews shoes whose shoes does he choose?</p> */}
                   <div className="card-actions justify-start">
-                    <button className="btn btn-primary">Ajouter une note</button>
+                    {userRole === 'teacher' && (
+                      <ModalAddNote studentPseudo={student.pseudo} studentId={student._id} teacherId={userId} />
+                    )}
                   </div>
                 </div>
               </div>
